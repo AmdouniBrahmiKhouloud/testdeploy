@@ -1,0 +1,18 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+
+<div>
+	<h5 class="mb-1 font-normal"><mat-icon> bar_chart</mat-icon> Bar Chart</h5>
+  <div style="display: block">
+    <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          bar ></canvas>
+  </div>
+</div>
+
+
+
+
+

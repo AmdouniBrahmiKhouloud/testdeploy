@@ -1,0 +1,44 @@
+<header class="ll_header" [class.top-fixed]="topFixed" [ngClass]="{ 'bg-gray-50 shadow': topFixed && isScrolled }">
+  <div class="container">
+    <div class="flex items-center">
+      <div class="flex items-center">
+        <a class="logo" [routerLink]="['']"><img src="assets/images/logo.png" alt="Logo" /></a>
+        <ul class="flex item-center ml-5" *ngIf="!isLessThenLargeDevice && menuList && menuList.length">
+          <li *ngFor="let menu of menuList">
+            <a mat-button [routerLink]="[menu.path]" routerLinkActive="bg-gray-100" class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>
+          </li>
+          <li >
+            <a mat-button [routerLink]="['/dashboard/profile']" class="text-lg font-bold py-2 px-5" *ngIf="user.categorieClient!=null && user.categorieClient !='admin'">Profil</a>
+          </li>
+          <li >
+            <a mat-button [routerLink]="['/dashboard']" class="text-lg font-bold py-2 px-5" *ngIf="user.categorieClient!=null && user.categorieClient ==='admin'">Dashboard</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <button
+        *ngIf="isLessThenLargeDevice"
+        (click)="toggleSidenav.emit()"
+        class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3"
+        mat-icon-button
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button (click)="makeToOrders()"
+        *ngIf="user.nom!=null && user.categorieClient != 'admin'"
+        class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3"
+        mat-icon-button
+      > {{numbersOrder}}
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+      <div class="hidden items-center md:flex ml-auto" *ngIf="user.nom ==null">
+        <a [routerLink]="['/auth/login']" mat-raised-button color="warn" class="text-lg font-bold py-2 px-5">Login</a>
+        <a [routerLink]="['/auth/signup']" mat-raised-button color="accent" class="text-lg font-bold py-2 px-5 ml-2">Join Now</a>
+      </div>
+      <div class="hidden items-center md:flex ml-auto" *ngIf="user.nom!=null">
+        <a (click)="onLogout()" mat-raised-button color="warn" class="text-lg font-bold py-2 px-5">Logout</a>
+      </div>
+    </div>
+  </div>
+</header>

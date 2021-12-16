@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Hi {{ fournisseur.code }}</h1>
+<div mat-dialog-content>
+  <p>Mettre A jour un fournisseur</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Libelle</mat-label>
+    <input matInput [(ngModel)]="libelle" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Adresse</mat-label>
+    <input matInput [(ngModel)]="adresse" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Numéro</mat-label>
+    <input matInput [(ngModel)]="numero" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+</div>

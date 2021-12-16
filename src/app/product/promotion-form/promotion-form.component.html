@@ -1,0 +1,34 @@
+<div class='container'>
+<form class="w-50 mx-auto" [formGroup]="form" (ngSubmit)="addPromotion(form)">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" formControlName="name" [(ngModel)]="promotion.name">
+  </div>
+
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" class="form-control" formControlName="description" [(ngModel)]="promotion.description">
+  </div>
+
+  <div class="form-group">
+    <label>Pourcentage</label>
+    <input type="number" class="form-control" formControlName="pourcentage" [(ngModel)]="promotion.pourcentage">
+  </div>
+
+  <div class="form-group">
+    <label>start-Date</label>
+    <input type="date" class="form-control" formControlName="dateBegin" [(ngModel)]="promotion.dateBegin">
+  </div>
+
+  <div class="form-group">
+    <label>End-Date</label>
+    <input type="date" class="form-control" formControlName="endate" [(ngModel)]="promotion.endate" >
+  </div>
+  <div class="alert alert-danger" *ngIf="checkDate(promotion.dateBegin , promotion.endate)">Start Date > End Date </div>
+
+
+
+  <input class="btn btn-primary" type="submit" value="Add Promotion" [disabled]=' checkDate(promotion.dateBegin , promotion.endate)'>
+  <input class="btn btn-secondary" type="reset" value="Reset">
+</form>
+</div>

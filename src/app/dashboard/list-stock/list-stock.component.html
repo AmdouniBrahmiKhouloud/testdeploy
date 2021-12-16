@@ -1,0 +1,102 @@
+<div>
+  <div class="filter flex items-center mb-5">
+    <h5>List Stock</h5>
+    <div class="flex items-center ml-auto">
+   
+    <a [routerLink]="'/dashboard/add-stock'" class="font-semibold" mat-flat-button color="warn">add stock</a>
+     
+      <button [class.text-accent]="view === 'grid'" (click)="view = 'grid'" mat-icon-button class="view__btn"> 
+        <mat-icon>grid_view</mat-icon>
+      </button>
+      
+      <button [class.text-accent]="view === 'list'" (click)="view = 'list'" mat-icon-button class="view__btn">
+        <mat-icon>list_alt</mat-icon>
+      </button>
+      
+    </div>
+  </div>
+  <div>
+    <div *ngIf="view === 'list'" class="table-inside">
+      <div class="flex flex-col border ltLg:responsive">
+        <div class="flex items-center p-4 border-b hover:bg-blue-100">
+          <div class="w-4/12 font-medium">Stock label </div>
+          <div class="w-4/12 font-medium">Product</div>
+          <div class="w-4/12 font-medium">Provider</div>
+          <div class="w-4/12 font-medium">Amount</div>
+        
+          <div class="w-5/12 font-medium">Minimum quantity </div>
+          <div class="w-3/12 font-medium">Actions</div>
+        
+        </div>
+        <div class="flex items-center p-4 border-b hover:bg-blue-100" *ngFor="let stock of stocks | slice: 0:9">
+         
+          <div class="w-3/12 font-medium ">
+            <mat-icon color="warn">loyalty</mat-icon> {{stock.libelleStock }} 
+
+        </div>
+ 
+         
+          <div class="w-2/12 font-medium ">
+             {{stock.productsName}} 
+
+        </div>
+       
+
+         
+          <div class="w-2/12 font-medium ">
+            {{stock.fournisseursName }} 
+
+        </div>
+          <!--div class="w-3/12 font-medium"-->
+          <div  
+            class="bg-blue-500 text-blue-500 w-3/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+            
+           {{stock.qte }} products
+
+             
+            </div>
+          
+          <div
+            class="bg-red-500 text-red-500 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+          
+           {{stock.qteMin}} products
+          </div>
+          <div class="w-2/12 text-right">
+            <button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xposition="before">
+              <!--button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Details</span>
+              </button-->
+              <button mat-menu-item (click)="deleteStock(stock.idstock)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item (click)="updateStock(stock.idstock)">
+                <mat-icon>update</mat-icon>
+                <span>Update</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-4" *ngIf="view === 'grid'">
+      <div class="col-span-4" *ngFor="let product of products | slice: 0:9">
+        <mat-card>
+        
+          <mat-card-header class="mx-0">
+            <h3 class="text-[15px] leading-[23px]"></h3>
+          </mat-card-header>
+          <mat-card-actions>
+            <a mat-stroked-button [routerLink]="['/products', product.id]" class="px-5">View</a>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

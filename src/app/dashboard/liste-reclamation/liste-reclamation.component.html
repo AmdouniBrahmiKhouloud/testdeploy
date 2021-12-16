@@ -1,0 +1,30 @@
+<div class="grid grid-cols-1 md:grid-cols-3">
+  <div class="card" *ngFor="let item of reclamation">
+    <h6>Reply to this complaint:</h6>
+    <textarea (keyup)="change($event)" name="" id="" cols="30"> </textarea>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="addReponse(item)">
+      Send response
+    </button>
+    <div class="main">
+      <div class="block">
+        <div class="block-2">
+          <div class="clear">
+            <img class="avatar" src="https://thispersondoesnotexist.com/image" alt="" />
+            <div class="content">
+              <h6>{{ item.client.nom }} {{ item.client.prenom }}</h6>
+              <h6>{{ item.date | date: 'fullDate' }}</h6>
+
+              <span
+                >Detail :
+                <p>
+                  {{ item.detail }}
+                </p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

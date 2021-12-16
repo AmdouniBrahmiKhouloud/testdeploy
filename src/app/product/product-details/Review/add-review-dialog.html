@@ -1,0 +1,59 @@
+<div mat-dialog-content class="flex">
+  <div class="max-w-md hidden md:block">
+    <img class="w-full" src="assets/images/products/details.jpg" alt="img not found" />
+    <h2 class="text-center mt-12">{{product.libelle}}</h2>
+  </div>
+  <div class="flex-2 md:ml-24">
+    <h1 mat-dialog-title>Review By user</h1>
+    <div
+      *ngIf="showError"
+      class="mb-8 relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg"
+      role="alert"
+    >
+      <p>Rating is required to add a review</p>
+    </div>
+    <p>Tell us what you think about this product. Would your recommend it , and why?</p>
+
+    <mat-form-field class="textArea" appearance="fill">
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="review.description"></textarea>
+    </mat-form-field>
+    <div class="flex justify-start items-end">
+      <ul class="starList">
+        <li
+          class="ml-4 starItem"
+          *ngFor="let star of data.stars"
+          [ngClass]="{ selected: star <= review.rating }"
+          (mouseover)="onStarHover(star)"
+          (mouseout)="onEndHover()"
+          (click)="onClick(star)"
+        >
+          ★
+        </li>
+      </ul>
+
+      <p class="ml-6">{{rateDescriptions}}</p>
+    </div>
+  </div>
+</div>
+<div class="flex justify-end">
+  <button class="mr-4" (click)="onCancelClick()" mat-button>Cancel</button>
+  <button
+    *ngIf="review.id"
+    mat-flat-button
+    color="primary"
+    [disabled]="review.rating === 0"
+    [mat-dialog-close]="review"
+  >
+    Update
+  </button>
+  <button
+    *ngIf="!review.id"
+    mat-flat-button
+    color="primary"
+    [disabled]="review.rating === 0"
+    [mat-dialog-close]="review"
+  >
+    Submit
+  </button>
+</div>

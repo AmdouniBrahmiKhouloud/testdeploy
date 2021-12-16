@@ -1,0 +1,57 @@
+<div>
+	<h5 class="mb-3 font-medium">Orders : total Price {{ totalPrice }} </h5>
+  <button *ngIf="totalPrice != 0"  (click)="clearList()" class="mat-focus-indicator text-lg font-bold py-2 px-5
+      mat-raised-button mat-button-base mat-warn clear" >
+    Clear List
+  </button>
+
+  <button class="mat-focus-indicator text-lg font-bold py-2 px-5 mx-5
+      mat-raised-button mat-button-base mat-warn clear" (click)="exportPdf()">
+    Export Pdf
+  </button>
+	<div class="table-inside">
+		<table class="order-table table-auto ltMd:responsive">
+			<thead>
+				<tr class="border text-left">
+					<th>
+						<span class="text-gray-800">title</span>
+					</th>
+					<th>
+						<span class="text-gray-800">Price</span>
+					</th>
+          <th>
+            <span class="text-gray-800">Quantity</span>
+          </th>
+          <th>
+            <span class="text-gray-800">Total</span>
+          </th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let order of fullList" class="border">
+					<td>
+						{{order.libelle}}
+					</td>
+          <td>
+            {{order.prixUnitaire}}
+          </td>
+          <td>
+            <input type="number" (change)="quantityChanged($event,order.idproduit)" min="1" step="1" value="{{order.quantity}}">
+          </td>
+          <td>
+            {{order.totalPrice}}
+          </td>
+          <button class="mat-focus-indicator text-lg font-bold py-2 px-5
+      mat-raised-button mat-button-base mat-warn delete" (click)="deleteItem(order)" > Delete</button>
+				</tr>
+			</tbody>
+    </table>
+    <button *ngIf="totalPrice != 0" class="mat-focus-indicator text-lg font-bold py-2 px-5
+      mat-raised-button mat-button-base mat-warn checkout" (click)="addFacture()">
+      Checkout
+    </button>
+
+
+
+</div></div>

@@ -1,0 +1,72 @@
+<div class="flex justify-start items-end">
+  <ul class="starList">
+    <li
+      class="starItem"
+      *ngFor="let star of stars"
+      [ngClass]="{ selected: star <= tempRating }"
+      (mouseover)="onHover(star)"
+      (mouseout)="onHoverEnd()"
+      (click)="openDialog(star)"
+    >
+      ★
+    </li>
+  </ul>
+  <p class="ml-6 flex-1">Buyers {{ rateDescriptions }}</p>
+  <button class="ml-12" mat-stroked-button color="primary" (click)="openDialog(0)" *ngIf="review">
+    <mat-icon>edit</mat-icon> Update your review
+  </button>
+  <button class="ml-12" mat-stroked-button color="primary" (click)="openDialog(0)" *ngIf="!review">
+    <mat-icon>edit</mat-icon> Write a review
+  </button>
+</div>
+<ng-container *ngIf="reviews">
+  <div *ngFor="let review of reviews">
+    <mat-card class="mt-8 flex justify-between">
+      <div class="flex items-start">
+        <div
+          class="
+            m-1
+            mr-6
+            w-16
+            h-16
+            relative
+            flex
+            justify-center
+            items-center
+            rounded-full
+            bg-red-500
+            text-xl text-white
+            uppercase
+            flex-none
+          "
+        >
+          {{ review.client.nom[0] }}
+        </div>
+        <div>
+          <div class="mt-2">{{ review.client.prenom }} {{ review.client.nom }}</div>
+          <mat-card-subtitle class="mt-20"
+            ><ul class="flex flex-row-reverse justify-end">
+              <li *ngFor="let star of stars" [ngClass]="{ selected: star <= review.rating }">★</li>
+            </ul>
+            {{ starsDescriptions[review.rating - 1] }}</mat-card-subtitle
+          >
+
+          <div class="pt-4 pb-4 pr-4">
+            {{ review.description }}
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          class="mr-4"
+          *ngIf="userRole === 'admin' || product.client.id == userId"
+          mat-icon-button
+          (click)="openConfirmationDialog(review.id)"
+          color="accent"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</ng-container>

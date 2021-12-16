@@ -1,0 +1,79 @@
+<div class="flex flex-wrap">
+  <div class="flex space-x-3 bg-primary rounded-md px-5 py-3 w-full sm:w-1/2">
+    <div class="mt-4">
+      <a [routerLink]="['/dashboard']"  class="text-gray-700 text-sm hover:text-accent inline-flex items-center"><mat-icon class="h-4 w-4 leading-4 text-lg mr-2">keyboard_backspace</mat-icon>Go to Users List</a>
+    </div>
+  </div>
+</div>
+<div class="border bg-white mt-8 rounded-md">
+  <div class="flex p-4 bg-gray-200">
+    <h6 class="text-normal">User Information</h6>
+    <button class="text-blue-400 hover:text-accent ml-auto flex items-center" (click)='update()'>
+      <mat-icon class="_edit_icon mr-2">edit</mat-icon>
+      Edit</button>
+  </div>
+  <div class="flex flex-wrap p-4">
+    <div class="w-full sm:w-1/2">
+      <div class="ll-dataset">
+        <div class="ll-dataset__label">
+          First Name:
+        </div>
+        <div class="ll-dataset__value">
+          {{user?.prenom}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Last Name:
+        </div>
+        <div class="ll-dataset__value">
+          {{user?.nom}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Account Category:
+        </div>
+        <div class="ll-dataset__value">
+         {{user?.categorieClient}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Date of Birth:
+        </div>
+        <div class="ll-dataset__value">
+          {{user?.dateNaissance}}
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Email:
+        </div>
+        <div class="ll-dataset__value">
+          {{user?.email}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Occupation:
+        </div>
+        <div class="ll-dataset__value">
+          {{user?.profession}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Account Status:
+        </div>
+        <div class="ll-dataset__value">
+          <mat-slide-toggle checked='{{user?.active}}'  (change)="onChange($event)"
+                            [(ngModel)]="isChecked"></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

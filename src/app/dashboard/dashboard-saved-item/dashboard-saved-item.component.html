@@ -1,0 +1,300 @@
+<div>
+
+  <div class="filter flex items-center mb-5">
+    <h5>List products</h5>
+    <div class="flex items-center ml-auto">
+
+      <a [routerLink]="'/dashboard/add-product'" class=" px-5 py-0 font-semibold" mat-flat-button color="warn">add product</a>
+
+      <a [routerLink]="'/dashboard/add-detail-produit'" class=" px-5 py-0 font-semibold" mat-flat-button color="bg-red-500">add category</a>
+
+
+
+      <button [class.text-accent]="view === 'grid'" (click)="view = 'grid'" mat-icon-button class="view__btn">
+        <mat-icon>grid_view</mat-icon>
+      </button>
+
+      <button [class.text-accent]="view === 'list'" (click)="view = 'list'" mat-icon-button class="view__btn">
+        <mat-icon>list_alt</mat-icon>
+      </button>
+
+    </div>
+  </div>
+  <div >
+    <!--simple-notifications></simple-notifications-->
+    <div *ngIf="view === 'list'" class="table-insid[e">
+      <div class="flex flex-col border ltLg:responsive">
+        <div class="flex items-center p-4 border-b hover:bg-blue-100">
+          <div class="w-3/12 font-medium">Picture</div>
+          <div class="w-4/12 font-medium">Referance</div>
+
+          <div class="w-3/12 font-medium">Name</div>
+          <div class="w-3/12 font-medium">Price</div>
+          <div class="w-4/12 font-medium">Category</div>
+          <div class="w-3/12 font-medium">Stock</div>
+
+          <div class="w-2/12 font-medium">Actions</div>
+
+        </div>
+
+
+
+        <div class="flex items-center p-4 border-b hover:bg-blue-100" *ngFor="let promotion of listWithPromtion | paginate:{itemsPerPage:5,currentPage: p}">
+          <div class="w-2/12">
+            <!--p>this.ProductService.url+'Imgproduits/'+product.idproduit </p-->
+            <img _ngcontent-vpo-c128="" mat-card-image="" class="mat-card-image" style="width: 100%; margin: 0 0 20px;"  src="{{definedUrl + promotion.produit.idproduit }}">
+
+
+          </div>
+          <!--div class="w-2/12 font-medium"-->
+          <div
+            class=" w-3/12 bg-red-500 text-red-500 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+            # {{ promotion.produit?.code }}
+          </div>
+
+
+          <div class="bg-white-500 text-pink-900 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ promotion.produit?.libelle }}
+
+
+          </div>
+
+          <div class="bg-yellow-500 text-yellow-900 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ promotion.produit.prixUnitaire }} €
+          </div>
+          <div  [ngClass]="{
+            'bg-red-500 text-red-500': promotion.produit.categoryName === 'Electromeanger',
+            'bg-primary text-primary': promotion.produit.categoryName === 'Alimentaire',
+            'bg-blue-500 text-yellow-500': promotion.produit.categoryName === 'Quincaillerie'
+
+
+
+
+            }"
+                class=" w-3/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+
+
+
+            {{ promotion.produit.categoryName }}
+          </div>
+          <div class="bg-blue-500 text-blue-500 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ promotion.produit.stockName }}
+          </div>
+
+          <div class="w-1/12 text-right">
+            <button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xposition="before">
+              <button mat-menu-item (click)="showProduct(promotion.produit.idproduit)">
+                <mat-icon>dialpad</mat-icon>
+                <span>Details</span>
+              </button>
+              <button class="mat-menu-item" mat-flat-button (click)="updateProduct(promotion.produit.idproduit)">
+                <mat-icon>update</mat-icon>
+                <span>Update</span>
+              </button>
+              <button  mat-menu-item (click)="delete(promotion)">
+                <mat-icon>delete</mat-icon>
+                <span>delete Promotion</span>
+              </button>
+              <button (click)="update(promotion.id)" mat-menu-item>
+                <mat-icon>update</mat-icon>
+                <span>Update Promotion</span>
+
+              </button>
+
+
+
+
+
+
+
+
+              <!--mat-paginator [pageSizeOption]="[5,10,20]"> showFirstLastButtons</mat-paginator-->
+
+              <div class="grid grid-cols-2 gap-8 lg:gap-5" *ngIf="view === 'grid'">
+                <div class="grid grid-cols-3 gap-4 lg:gap-8" *ngFor="let detailProduct of detailProducts | slice: 0:9">
+                  <div class="col-span-6 md:col-span-4 border rounded px-4 lg:px-8 py-8 lg:py-16">
+                    <mat-icon class="text-accent mb-5">Category</mat-icon><mat-icon class="text-accent mb-5">A</mat-icon><mat-icon class="text-accent mb-5">T</mat-icon><mat-icon class="text-accent mb-5">E</mat-icon><mat-icon class="text-accent mb-5">G</mat-icon><mat-icon class="text-accent mb-5">O</mat-icon><mat-icon class="text-accent mb-5">R</mat-icon> <mat-icon class="text-accent mb-5">Y</mat-icon>
+                    <div  [ngClass]="{
+            'bg-red-500 text-red-500': detailProduct.categorieProduit === 'Electromeanger',
+            'bg-primary text-primary': detailProduct.categorieProduit === 'Alimentaire',
+            'bg-blue-500 text-yellow-500': detailProduct.categorieProduit === 'Quincaillerie'
+
+
+
+
+            }"
+                          class=" w-3/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+                    >
+                      <h6>{{detailProduct.categorieProduit}}</h6> </div>
+                    <h6> created on : </h6><h7>{{detailProduct.dateCreation | date:'fullDate' }} </h7> <strong>  At :</strong> <h7> {{detailProduct.dateCreation | date:'h:mm a z'}}  </h7>
+                    <br>
+                    <h6> updated on : </h6><h7>{{detailProduct.dateDerniereModification | date:'fullDate' }} </h7> <strong>  At :</strong> <h7> {{detailProduct.dateDerniereModification | date:'h:mm a z'}}  </h7>
+
+                    <br>
+                    <br>
+
+
+
+                    <button class="font-semibold" mat-flat-button color="warn" (click)="updateDetailProduct(detailProduct.idDetailProduit)" >
+                      <mat-icon>update</mat-icon>
+                      <span>Update</span>
+                    </button>
+                    <button class="font-semibold" mat-flat-button  (click)="deleteDetailProduct(detailProduct.idDetailProduit)" >
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </mat-menu>
+          </div>
+        </div>
+
+
+
+        
+        <div class="flex items-center p-4 border-b hover:bg-blue-100" *ngFor="let product of products | paginate:{itemsPerPage:5,currentPage: p}">
+          <div class="w-2/12">
+            <!--p>this.ProductService.url+'Imgproduits/'+product.idproduit </p-->
+            <img _ngcontent-vpo-c128="" mat-card-image="" class="mat-card-image" style="width: 100%; margin: 0 0 20px;"  src="{{definedUrl + product.idproduit }}">
+
+
+          </div>
+          <!--div class="w-2/12 font-medium"-->
+          <div
+            class=" w-3/12 bg-red-500 text-red-500 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+            # {{ product?.code }}
+          </div>
+
+
+          <div class="bg-white-500 text-pink-900 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ product?.libelle }}
+
+
+          </div>
+
+          <div class="bg-yellow-500 text-yellow-900 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ product.prixUnitaire }} €
+          </div>
+          <div  [ngClass]="{
+            'bg-red-500 text-red-500': product.categoryName === 'Electromeanger',
+            'bg-primary text-primary': product.categoryName === 'Alimentaire',
+            'bg-blue-500 text-yellow-500': product.categoryName === 'Quincaillerie'
+
+
+
+
+            }"
+                class=" w-3/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+
+
+
+            {{ product.categoryName }}
+          </div>
+          <div class="bg-blue-500 text-blue-500 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+
+
+            {{ product.stockName }}
+          </div>
+
+          <div class="w-1/12 text-right">
+            <button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xposition="before">
+              <button mat-menu-item (click)="showProduct(product.idproduit)">
+                <mat-icon>dialpad</mat-icon>
+                <span>Details</span>
+              </button>
+              <button class="mat-menu-item" mat-flat-button color="warn" (click)="updateProduct(product.idproduit)">
+                <mat-icon>update</mat-icon>
+                <span>Update</span>
+              </button>
+              <button mat-menu-item (click)="deleteProduct(product.idproduit)">
+                <mat-icon>delete</mat-icon>
+                <span>delete</span>
+              </button>
+              <button  mat-menu-item (click)='Add(product.idproduit)'>
+                <mat-icon>add</mat-icon>
+                <span>Add Promotion</span>
+              </button>
+
+
+
+
+
+
+              <!--mat-paginator [pageSizeOption]="[5,10,20]"> showFirstLastButtons</mat-paginator-->
+
+
+            </mat-menu>
+          </div>
+        </div>
+
+
+      </div>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+    </div>
+   
+    <div class="grid grid-cols-2 gap-8 lg:gap-5" *ngIf="view === 'grid'">
+      <div class="grid grid-cols-3 gap-4 lg:gap-8" *ngFor="let detailProduct of detailProducts | slice: 0:9">
+        <div class="col-span-6 md:col-span-4 border rounded px-4 lg:px-8 py-8 lg:py-16">
+          <mat-icon class="text-accent mb-5">Category</mat-icon><mat-icon class="text-accent mb-5">A</mat-icon><mat-icon class="text-accent mb-5">T</mat-icon><mat-icon class="text-accent mb-5">E</mat-icon><mat-icon class="text-accent mb-5">G</mat-icon><mat-icon class="text-accent mb-5">O</mat-icon><mat-icon class="text-accent mb-5">R</mat-icon> <mat-icon class="text-accent mb-5">Y</mat-icon>
+          <div  [ngClass]="{
+            'bg-red-500 text-red-500': detailProduct.categorieProduit === 'Electromeanger',
+            'bg-primary text-primary': detailProduct.categorieProduit === 'Alimentaire',
+            'bg-blue-500 text-yellow-500': detailProduct.categorieProduit === 'Quincaillerie'
+
+            
+           
+            
+            }" 
+            class=" w-3/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+          >
+          <h6>{{detailProduct.categorieProduit}}</h6> </div>
+          <h6> created on : </h6><h7>{{detailProduct.dateCreation | date:'fullDate' }} </h7> <strong>  At :</strong> <h7> {{detailProduct.dateCreation | date:'h:mm a z'}}  </h7>
+          <br>
+          <h6> updated on : </h6><h7>{{detailProduct.dateDerniereModification | date:'fullDate' }} </h7> <strong>  At :</strong> <h7> {{detailProduct.dateDerniereModification | date:'h:mm a z'}}  </h7>
+
+          <br>
+          <br>
+         
+          
+        
+          <button class="font-semibold" mat-flat-button color="warn" (click)="updateDetailProduct(detailProduct.idDetailProduit)" >
+            <mat-icon>update</mat-icon>
+            <span>Update</span>
+          </button>
+          <button class="font-semibold" mat-flat-button  (click)="deleteDetailProduct(detailProduct.idDetailProduit)" >
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>

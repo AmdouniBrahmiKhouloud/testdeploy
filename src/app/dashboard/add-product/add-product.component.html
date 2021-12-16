@@ -1,0 +1,225 @@
+<h1>Add Product</h1>
+<br />
+
+<form [formGroup]="this.productService.dataForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <input
+      formControlName="code"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.code.errors }"
+      type="text"
+      placeholder=" referance of product .."
+      class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+      id="code"
+      name="code"
+    />
+
+    <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+      <div *ngIf="f.code.errors.required">
+        <div
+          class="
+            bg-red-500
+            text-red-500
+            w-8/12
+            font-medium
+            text-[13px]
+            bg-opacity-20
+            rounded-full
+            px-3
+            inline-block
+            font-bold
+            py-[3px]
+            hover:bg-blue-100
+          "
+        >
+          referance's product is still empty
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5">
+    <input
+      formControlName="image"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.image.errors }"
+      type="file"
+      accept="image/*"
+      (change)="onSelectFile($event)"
+    />
+    <img [src]="imgURL" height="200" width="200" *ngIf="imgURL" id="image" name="image" />
+  </div>
+  <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+    <div *ngIf="f.image.errors.required">
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        Image's product is still empty
+      </div>
+    </div>
+  </div>
+
+  <input
+    formControlName="libelle"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }"
+    type="text"
+    placeholder=" product name .."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="libelle"
+    name="libelle"
+  />
+  <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+    <div *ngIf="f.libelle.errors.required">
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-3/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        Name's product is still empty
+      </div>
+    </div>
+  </div>
+
+  <input
+    formControlName="prixUnitaire"
+    type="number"
+    placeholder="Price.."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="prixUnitaire"
+    name="prixUnitaire"
+  />
+
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <select
+      class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm"
+      id="categoryName"
+      formControlName="categoryName"
+      name="categoryName"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.categoryName.errors }"
+    >
+      <option>Categories</option>
+      <option *ngFor="let detailProduct of detailProducts">{{ detailProduct.categorieProduit }}</option>
+    </select>
+    <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
+      <div *ngIf="f.categoryName.errors.required">
+        <div
+          class="
+            bg-red-500
+            text-red-500
+            w-7/12
+            font-medium
+            text-[13px]
+            bg-opacity-20
+            rounded-full
+            px-3
+            inline-block
+            font-bold
+            py-[3px]
+            hover:bg-blue-100
+          "
+        >
+          categoryName is still empty
+        </div>
+      </div>
+    </div>
+    <select
+      class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm"
+      (change)="selectOption($event.target.value)"
+      id="stockName"
+      formControlName="stockName"
+      name="stockName"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.stockName.errors }"
+    >
+      <option>Stocks</option>
+      <option *ngFor="let stock of stocks" [value]="stock.idstock">{{ stock.libelleStock }}</option>
+    </select>
+
+    <div *ngIf="submitted && f.stockName.errors" class="invalid-feedback">
+      <div *ngIf="f.stockName.errors.required">
+        <div
+          class="
+            bg-red-500
+            text-red-500
+            w-7/12
+            font-medium
+            text-[13px]
+            bg-opacity-20
+            rounded-full
+            px-3
+            inline-block
+            font-bold
+            py-[3px]
+            hover:bg-blue-100
+          "
+        >
+          stockName is still empty
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <textarea
+    formControlName="description"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+    cols="10"
+    rows="3"
+    placeholder="Description.."
+    class="border border-gray-200 p-3 mt-5 w-full rounded-sm mt-5"
+    id="description"
+    name="description"
+  >
+  </textarea>
+  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+    <div class="alert alert-danger" *ngIf="f.description.errors.required">
+      <!--div class=" w-3/12 bg-red-200 text-pink-900 hover:bg-blue-100"-->
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-3/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        Description's product is still empty
+      </div>
+    </div>
+  </div>
+
+  <button class="px-5 py-2 bg-accent text-white mt-5 rounded font-medium">Save</button>
+</form>

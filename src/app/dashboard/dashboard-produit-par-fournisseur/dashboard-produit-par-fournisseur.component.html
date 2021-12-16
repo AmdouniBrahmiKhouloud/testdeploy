@@ -1,0 +1,42 @@
+<div
+  class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+  *ngIf="products.length > 0"
+  role="alert"
+>
+  la quantité des produits de ce fournisseur est : {{ products.length }}
+</div>
+
+<div
+  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+  *ngIf="products.length == 0"
+  role="alert"
+>
+  Pas de produit pour ce fournisseur
+</div>
+
+<div class="row">
+  <div class="card" *ngFor="let product of products">
+    <img src="{{ definedUrl + product.idproduit }}" alt="" />
+
+    <div class="card-body">
+      <div class="row">
+        <div class="card-title">
+          <h4>{{ product.libelle }}</h4>
+          <h3>{{ product.prixUnitaire }} DT</h3>
+        </div>
+        <div class="view-btn">
+          <a (click)="showProduct(product.idproduit)">View Details</a>
+        </div>
+      </div>
+      <hr />
+      <p style="text-align: center">Quantité : {{ product.stock.qte }}</p>
+      <p style="text-align: center">Libelle : {{ product.stock.libelleStock }}</p>
+
+      <div class="btn-group">
+        <div class="btn">
+          <a (click)="sendMail(product)"> Commander plus de ce produit </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

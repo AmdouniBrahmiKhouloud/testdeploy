@@ -1,0 +1,135 @@
+<div>
+	<!-- User Start -->
+	<div class="flex flex-wrap">
+		<div class="flex space-x-3 bg-primary rounded-md px-5 py-3 w-full sm:w-1/2">
+			<!--<div class="w-16 h-16 rounded-full overflow-hidden shadow-md">
+				<img src="assets/images/user-128x128.jpg" alt="" class="w-full h-full object-cover">
+			</div>-->
+      <div
+        class="
+            m-1
+            mr-6
+            w-16
+            h-16
+            relative
+            flex
+            justify-center
+            items-center
+            rounded-full
+            bg-yellow-300
+            text-xl text-white
+            uppercase
+            flex-none
+          "
+      >
+        {{ user.nom[0]+''+user.prenom[0]}}
+      </div>
+			<div class="text-white">
+				<h5>{{user?.nom +' ' + user?.prenom}}</h5>
+				<p class="leading-normal text-white">
+					<span class="font-medium">Email</span>: {{user?.email}}</p>
+			</div>
+		</div>
+	</div>
+	<!-- User End -->
+	<!-- User Meta Start -->
+  <div class="border bg-white mt-8 rounded-md">
+    <form [formGroup]='myForm' (ngSubmit)='updatePassword(myForm)'>
+      <div class="flex p-4 bg-gray-200">
+        <h6 class="text-normal">Primary Information</h6>
+        <button class="text-blue-400 hover:text-accent ml-auto flex items-center" type='submit' [disabled]='myForm.invalid'>
+          <mat-icon class="_edit_icon mr-2">edit</mat-icon>
+          Edit</button>
+      </div>
+      <div class="flex flex-wrap p-4">
+        <div class="w-full sm:w-1/2">
+          <div class="ll-dataset">
+            <div class="ll-dataset__label">
+              Current Password:
+            </div>
+            <div class="ll-dataset__value">
+              <input type='password' placeholder='Current Password' formControlName='currentPassword'>
+            </div>
+          </div>
+        </div>
+        <div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+          <div class="ll-dataset">
+            <div class="ll-dataset__label">
+              New Password:
+            </div>
+            <div class="ll-dataset__value">
+              <input type='password' placeholder='New Password' formControlName='newPassword'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <!-- User Meta End -->
+	<!-- User Meta Start -->
+	<div class="border bg-white mt-8 rounded-md">
+		<div class="flex p-4 bg-gray-200">
+			<h6 class="text-normal">Personal Information</h6>
+			<button class="text-blue-400 hover:text-accent ml-auto flex items-center" [routerLink]="'/dashboard/update-profile'">
+				<mat-icon class="_edit_icon mr-2">edit</mat-icon>
+				Edit</button>
+		</div>
+		<div class="flex flex-wrap p-4">
+			<div class="w-full sm:w-1/2">
+				<div class="ll-dataset">
+					<div class="ll-dataset__label">
+						First Name:
+					</div>
+					<div class="ll-dataset__value">
+						{{user?.prenom}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Last Name:
+					</div>
+					<div class="ll-dataset__value">
+						{{user?.nom}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+            Account Category:
+					</div>
+					<div class="ll-dataset__value">
+						{{user.categorieClient}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Date of Birth:
+					</div>
+					<div class="ll-dataset__value">
+						{{date}}
+					</div>
+				</div>
+			</div>
+			<div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+            Email:
+					</div>
+					<div class="ll-dataset__value">
+						{{user.email}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Occupation:
+					</div>
+					<div class="ll-dataset__value">
+						{{user.profession}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- User Meta End -->
+</div>

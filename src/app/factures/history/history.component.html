@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <div class="table-inside">
+      <div class="flex flex-col border ltLg:responsive">
+        <div class="flex items-center p-4 border-b hover:bg-blue-100">
+          <div class="w-2/12 font-medium text-center">id</div>
+          <div class="w-2/12 font-medium text-center">montantRemise</div>
+          <div class="w-2/12 font-medium text-center">montantFacture</div>
+          <div class="w-2/12 font-medium text-center">dateFacture</div>
+        </div>
+        <div class="flex items-center p-4 border-b hover:bg-blue-100" *ngFor="let facture of factures">
+          <div class="w-2/12 text-center"> {{ facture.idFacture }}</div>
+          <div class="w-2/12 text-center"> {{ facture.montantRemise }} </div>
+          <div class="w-2/12 text-center"> {{ facture.montantFacture }} </div>
+          <div class="w-2/12 text-center"> {{ facture.dateFacture }} </div>
+          <div class="w-1/12 text-right">
+            <button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu  #menu="matMenu" xposition="before">
+              <button (click)="showDetailFacture(facture.idFacture)" mat-menu-item >
+                <mat-icon>dialpad</mat-icon>
+                <span >Details</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

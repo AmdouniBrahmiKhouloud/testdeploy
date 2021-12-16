@@ -1,0 +1,137 @@
+<div class="mt-32">
+  <div class="container">
+    <div class="grid grid-cols-12 gap-8">
+
+      <div class="col-span-12 md:col-span-7 xl:col-span-8 border p-12 ">
+        <span _ngcontent-yqh-c127="" href="javascript:void(0)" class="category text-primary inline-block mb-5 flex items-center pr-4 py-1 hover:text-primary text-primary-500" style="font-size:large;"><mat-icon _ngcontent-yqh-c127="" role="img" class="mat-icon notranslate mr-2 material-icons mat-icon-no-color " aria-hidden="true" data-mat-icon-type="font">more</mat-icon>#{{product.code}}</span>
+        <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+
+        <h1 class="_title font-medium">{{product.libelle}}</h1>
+        <div  [ngClass]="{
+          'bg-red-500 text-red-500': product.categoryName === 'Electromeanger',
+          'bg-primary text-primary': product.categoryName === 'Alimentaire',
+          'bg-blue-500 text-yellow-500': product.categoryName === 'Quincaillerie'
+
+
+
+          }"
+          class=" w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+        >
+
+        <h6 style="font-size:large;">{{product.categoryName}}</h6> </div>
+       </div>
+
+        <ul class="product-meta flex flex-wrap items-center mt-8 mb-8">
+          <li class="mr-4">
+            <a class="flex items-center pr-4 py-1 hover:text-primary" href="javascript:void(0)"
+              ><mat-icon class="mr-2" color="warn">start</mat-icon> 4.5/5 (14 Feedback)</a
+            >
+          </li>
+          <li class="mr-4">
+            <a class="flex items-center pr-4 py-1 hover:text-primary" href="javascript:void(0)"
+              ><mat-icon class="mr-2">favorite</mat-icon> Save</a
+            >
+          </li>
+
+          <li class="mr-4">
+            <a class="flex items-center pr-4 py-1 hover:text-primary" href="javascript:void(0)"
+              ><mat-icon class="mr-2">share</mat-icon> Share</a
+            >
+          </li>
+        </ul>
+
+        <img _ngcontent-qjd-c112="" mat-card-image="" class="mat-card-image"  style=" width:40%; margin: 0 0 20px;" alt="Industry marketing by subscription" src="{{definedUrl + product.idproduit }}">
+        <div class="ll-content mt-8">
+          <p>
+            {{product.description}}
+          </p>
+
+          <app-review [product]="product"></app-review>
+        </div>
+      </div>
+
+
+      <div class="col-span-12 md:col-span-5 xl:col-span-4">
+        <div class="border">
+          <div class="border-b text-center pt-10 pb-10">
+            <div class="text-accent text-4xl font-semibold">€{{product.prixUnitaire}}</div>
+            <div class="font-medium text-lg mt-3 text-gray-400 tracking-wider">Price</div>
+          </div>
+          <div class="border-b p-5">
+            <ul class="service-info">
+              <li class="py-2 mr-2">
+                <div class="flex items-center">
+                  <mat-icon class="text-primary border-2 rounded-full w-6 h-6 text-center leading-5 mr-2"
+                    >check</mat-icon
+                  >
+                  <strong class="mr-2 font-black">96</strong> interested persons
+                </div>
+              </li>
+              <li class="py-2 mr-2">
+                <div class="flex items-center">
+                  <mat-icon class="text-primary border-2 rounded-full w-6 h-6 text-center leading-5 mr-2"
+                    >check</mat-icon
+                  >
+                  <strong class="mr-2 font-black">1 hours</strong> reaction time
+                </div>
+              </li>
+              <li class="py-2 mr-2">
+                <div class="flex items-center">
+                  <mat-icon class="text-primary border-2 rounded-full w-6 h-6 text-center leading-5 mr-2"
+                    >check</mat-icon
+                  >
+                  <strong class="mr-2 font-black">12 hours</strong> delivery time
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="border-b p-5">
+            <h5>Addons Services</h5>
+            <div class="flex mt-2">
+              <div class="sm:pt-1 mr-3 sm:mr-6 md:mr-8">
+                <input
+                  type="checkbox"
+                  class="appearance-none border border-gray-300 checked:bg-gray-400 checked:border-transparent ..."
+                />
+              </div>
+              <div class="flex-grow">
+                <div class="price sm:float-right font-bold">€200.00</div>
+                <h6 class="text-gray-800">Execution after work</h6>
+                <p class="mt-2">
+                  Thanks to our home office approach, we can serve you during the entire microservice even after work,
+                  if that suits you better. The following times are possible after close of business: sun - thu, 9 p.m.
+                  - 7 p.m.
+                </p>
+              </div>
+            </div>
+            <div class="flex mt-4">
+              <div class="sm:pt-1 mr-3 sm:mr-6 md:mr-8">
+                <input
+                  type="checkbox"
+                  class="appearance-none border border-gray-300 checked:bg-gray-400 checked:border-transparent ..."
+                />
+              </div>
+              <div class="flex-grow">
+                <div class="price sm:float-right font-bold">€200.00</div>
+                <h6 class="text-gray-800">Execution after work</h6>
+                <p class="mt-2">
+                  Thanks to our home office approach, we can serve you during the entire microservice even after work,
+                  if that suits you better. The following times are possible after close of business: sun - thu, 9 p.m.
+                  - 7 p.m.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="border-b px-5 pt-10 pb-12 text-center">
+            <p class="text-gray-400 mb-4">This price can increase due to additional bookings</p>
+            <button mat-flat-button class="py-3 px-20 text-xl font-bold" color="accent" (click)="addItemToCard(product)">Buy now</button>
+          </div>
+        </div>
+        <div class="border mt-5 px-5 py-10 text-center">
+          <p class="font-bold mb-3">Do you have any special requirements?</p>
+          <button mat-stroked-button class="py-2 px-12 text-lg font-bold text-gray-700">Send us</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

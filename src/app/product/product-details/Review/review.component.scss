@@ -1,0 +1,42 @@
+.starItem:hover,
+.starItem:hover ~ .starItem {
+  color: orange;
+  cursor: pointer;
+}
+.selected {
+  color: orange;
+}
+
+.starList {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  .starItem {
+    font-size: 32px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageContaienr {
+  margin-right: 24px;
+  flex: 1;
+}
+
+.descriptionContainer {
+  flex: 2;
+}
+.textArea {
+  margin: 20px 0px;
+  width: 100%;
+  textarea {
+    min-height: 150px;
+    padding: 24px 12px;
+    &:focus {
+      --tw-ring-color: none;
+    }
+  }
+}

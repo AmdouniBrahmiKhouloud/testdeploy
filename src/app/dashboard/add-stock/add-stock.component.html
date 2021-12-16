@@ -1,0 +1,166 @@
+<h1>Add new Stock</h1>
+<br />
+<form #FAddStock="ngForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <input
+      type="text"
+      placeholder="stock label .."
+      class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+      id="libelleStock"
+      [(ngModel)]="stock.libelleStock"
+      name="libelleStock"
+      required
+      #fn="ngModel"
+    />
+    <div class="alert alert-danger" *ngIf="fn.invalid && fn.touched">
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-10/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        this field is required
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <select
+      class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm"
+      id="productsName"
+      [(ngModel)]="stock.productsName"
+      name="productsName"
+      class="form-control"
+      required
+      #fn1="ngModel"
+    >
+      <option>Products</option>
+      <option *ngFor="let product of products">{{ product.libelle }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="fn1.invalid && fn1.touched">
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-10/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        this field is required
+      </div>
+    </div>
+
+    <select
+      class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm"
+      id="fournisseursName"
+      (change)="selectOption($event.target.value)"
+      [(ngModel)]="stock.idfourn"
+      name="fournisseursName"
+      class="form-control"
+      required
+      #fn2="ngModel"
+    >
+      <option>providers</option>
+      <option *ngFor="let four of fournisseurs" [value]="four.idFournisseur">{{ four.libelle }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="fn2.invalid && fn2.touched">
+      <div
+        class="
+          bg-red-500
+          text-red-500
+          w-10/12
+          font-medium
+          text-[13px]
+          bg-opacity-20
+          rounded-full
+          px-3
+          inline-block
+          font-bold
+          py-[3px]
+          hover:bg-blue-100
+        "
+      >
+        this field is required
+      </div>
+    </div>
+  </div>
+  <input
+    type="number"
+    placeholder="amount.."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="qte"
+    [(ngModel)]="stock.qte"
+    name="qte"
+    required
+    #fn3="ngModel"
+  />
+  <div class="alert alert-danger" *ngIf="fn3.invalid && fn3.touched">
+    <div
+      class="
+        bg-red-500
+        text-red-500
+        w-3/12
+        font-medium
+        text-[13px]
+        bg-opacity-20
+        rounded-full
+        px-3
+        inline-block
+        font-bold
+        py-[3px]
+        hover:bg-blue-100
+      "
+    >
+      this field is required
+    </div>
+  </div>
+  <input
+    type="number"
+    placeholder="Min quantity.."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="qteMin"
+    [(ngModel)]="stock.qteMin"
+    name="qteMin"
+    required
+    #fn4="ngModel"
+  />
+  <div class="alert alert-danger" *ngIf="fn4.invalid && fn4.touched">
+    <div
+      class="
+        bg-red-500
+        text-red-500
+        w-3/12
+        font-medium
+        text-[13px]
+        bg-opacity-20
+        rounded-full
+        px-3
+        inline-block
+        font-bold
+        py-[3px]
+        hover:bg-blue-100
+      "
+    >
+      this field is required
+    </div>
+  </div>
+
+  <button class="px-5 py-2 bg-accent text-white mt-5 rounded font-medium" [disabled]="FAddStock.invalid">Save</button>
+</form>

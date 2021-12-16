@@ -1,0 +1,49 @@
+<h1>Update Stock</h1>
+<br />
+<form (ngSubmit)="onSubmit()">
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <input
+      type="text"
+      placeholder="stock label .."
+      class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+      id="libelleStock"
+      [(ngModel)]="stock.libelleStock"
+      name="libelleStock"
+    />
+  </div>
+  <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+    <select
+      class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm"
+      id="productsName"
+      [(ngModel)]="stock.productsName"
+      name="productsName"
+      class="form-control"
+    >
+      <option>Products</option>
+      <option *ngFor="let product of products">{{ product.libelle }}</option>
+    </select>
+
+    <!--   <select  class="border border-gray-100 p-1 px-1 w-full sm:w-1/6 rounded-sm" id="fournisseursName" [(ngModel)] = "stock.fournisseursName" name="fournisseursName" class="form-control" required #fn2="ngModel" >
+    <option>providers</option>
+     <option *ngFor="let stock of fournisseurs">{{stock.libelle}}</option>
+   </select> -->
+  </div>
+  <input
+    type="number"
+    placeholder="amount.."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="qte"
+    [(ngModel)]="stock.qte"
+    name="qte"
+  />
+  <input
+    type="number"
+    placeholder="Min quantity.."
+    class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+    id="qteMin"
+    [(ngModel)]="stock.qteMin"
+    name="qteMin"
+  />
+
+  <button class="px-5 py-2 bg-accent text-white mt-5 rounded font-medium">Save</button>
+</form>

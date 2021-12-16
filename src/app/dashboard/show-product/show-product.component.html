@@ -1,0 +1,48 @@
+<div _ngcontent-yqh-c127="" class="col-span-12 md:col-span-7 xl:col-span-8 border p-5">
+
+
+  <h1 _ngcontent-yqh-c127="" class="_title font-medium">{{product.libelle}}</h1>
+
+<span _ngcontent-yqh-c127="" href="javascript:void(0)" class="flex items-center pr-4 py-1 hover:text-primary text-yellow-500" style="font-size:large;"><mat-icon _ngcontent-yqh-c127="" role="img" class="mat-icon notranslate mr-2 material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" color="warn" >euro_symbol</mat-icon>{{product.prixUnitaire}}</span>
+
+      
+        <mat-icon class="text-accent mb-5">C</mat-icon><mat-icon class="text-accent mb-5">A</mat-icon><mat-icon class="text-accent mb-5">T</mat-icon><mat-icon class="text-accent mb-5">E</mat-icon><mat-icon class="text-accent mb-5">G</mat-icon><mat-icon class="text-accent mb-5">O</mat-icon><mat-icon class="text-accent mb-5">R</mat-icon> <mat-icon class="text-accent mb-5">Y</mat-icon>
+        <div  [ngClass]="{
+          'bg-red-500 text-red-500': product.categoryName === 'Electromeanger',
+          'bg-primary text-primary': product.categoryName === 'Alimentaire',
+          'bg-blue-500 text-yellow-500': product.categoryName === 'Quincaillerie'
+          
+         
+          
+          }" 
+          class=" w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
+        >
+
+        <h6>{{product.categoryName}}</h6> </div>
+        <br>
+        <mat-icon class="text-accent mb-5">S</mat-icon><mat-icon class="text-accent mb-5">T</mat-icon><mat-icon class="text-accent mb-5">O</mat-icon><mat-icon class="text-accent mb-5">C</mat-icon><mat-icon class="text-accent mb-5">K</mat-icon>
+
+ 
+
+      
+        <div class="bg-blue-500 text-blue-500 w-2/12 font-medium text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]">
+                 {{ product.stockName }} 
+          
+             
+        </div>
+        <br>
+      
+       
+
+        <!--mat-icon class="text-accent mb-5">C</mat-icon><mat-icon class="text-accent mb-5">O</mat-icon><mat-icon class="text-accent mb-5">S</mat-icon><mat-icon class="text-accent mb-5">T</mat-icon><mat-icon class="text-accent mb-5">S</mat-icon>
+      
+        <mat-icon color="warn" >
+        € </mat-icon> 
+          <span class="text-yellow-500 " style="font-size:large;" >{{product. prixUnitaire}} </span-->
+    
+      
+      <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+        <img _ngcontent-qjd-c112="" mat-card-image="" class="mat-card-image"  style=" width:40%; margin: 0 0 20px;" alt="Industry marketing by subscription" src="{{definedUrl + product.idproduit }}">
+     
+        <div _ngcontent-yqh-c127="" class="ll-content mt-8"><h6 _ngcontent-yqh-c127="">{{product.description}} </h6><h6 _ngcontent-yqh-c127=""></h6>
+        </div> 
